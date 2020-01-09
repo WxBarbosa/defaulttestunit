@@ -55,6 +55,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\AppServices\Financial\InvoiceAppServiceTesting.cs" />
@@ -77,6 +80,10 @@
     <ProjectReference Include="..\DefaultTestUnit.Infrastructure.Data\DefaultTestUnit.Infrastructure.Data.csproj">
       <Project>{70a39eeb-ed8b-4533-8ff4-c38b7f1bdd1b}</Project>
       <Name>DefaultTestUnit.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DefaultTestUnit.Web.UI\DefaultTestUnit.Web.UI.csproj">
+      <Project>{1a71df14-2798-4d28-8966-5998ee8a60e6}</Project>
+      <Name>DefaultTestUnit.Web.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

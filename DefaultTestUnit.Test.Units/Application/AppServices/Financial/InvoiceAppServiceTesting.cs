@@ -11,22 +11,28 @@ namespace DefaultTestUnit.Test.Units.Application.AppServices.Financial
     [TestClass]
     public class InvoiceAppServiceTesting
     {
-        protected IInvoiceAppService _invoiceAppService;
+        private IInvoiceAppService _invoiceAppService;
 
         public InvoiceAppServiceTesting()
         {
             _invoiceAppService = new InvoiceAppService();
         }
 
+        [TestInitialize]
+        public void Initialize()
+        {
+            _invoiceAppService = new InvoiceAppService();
+        }
+
         [TestMethod]
-        public void Test_GetData_Should_Return_Something()
+        public void Test_GetData_Should_Return_SomeResult()
         {
             //Arrange
-            var expected = new List<Invoice>();
+            var expected = 1;
             //Action
-            var actual = _invoiceAppService.Get(Invoice => Invoice.Id == 2);
+            var actual = _invoiceAppService.Get(x => x.Id == 1).ToList().Count();
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual); 
         }
     }
 }

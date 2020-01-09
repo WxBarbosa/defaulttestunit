@@ -18,6 +18,12 @@ namespace DefaultTestUnit.Infrastructure.Data.Context
             
         }
 
+        public Context(string connectionString)
+            :base(connectionString)
+        {
+
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

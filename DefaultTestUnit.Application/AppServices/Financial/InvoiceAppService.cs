@@ -13,11 +13,5 @@ namespace DefaultTestUnit.Application.AppServices
     public class InvoiceAppService : AppServiceBase<Invoice>, IInvoiceAppService
     {
 
-        private readonly Context _db;
-
-        public InvoiceAppService()
-        {
-            _db = new Context();
-        }
     }
 }
