@@ -54,11 +54,11 @@
     <Compile Include="Entities\DefaultEntity.cs" />
     <Compile Include="Entities\Invoice.cs" />
     <Compile Include="Helpers\Calculator.cs" />
+    <Compile Include="Interfaces\ICalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enum\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

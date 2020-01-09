@@ -32,7 +32,7 @@ namespace DefaultTestUnit.Test.Units.Application.AppServices.Financial
             //Action
             var actual = _invoiceAppService.Get(x => x.Id == 1).ToList().Count();
             //Assert
-            Assert.AreEqual(expected, actual); 
+            Assert.AreEqual(expected, actual);
         }
     }
 }

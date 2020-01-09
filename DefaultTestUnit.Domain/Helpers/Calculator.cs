@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DefaultTestUnit.Domain.Interfaces;
 
 namespace DefaultTestUnit.Domain.Helpers
 {
-    public class Calculator
+    public class Calculator : ICalculator
     {
         public double Sum(double[] listNumbers)
         {

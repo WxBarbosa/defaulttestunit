@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DefaultTestUnit.Domain.Helpers;
+using DefaultTestUnit.Domain.Interfaces;
+using Moq;
 
 namespace DefaultTestUnit.Test.Unit.Domain
 {
@@ -36,20 +38,6 @@ namespace DefaultTestUnit.Test.Unit.Domain
         }
 
         [TestMethod]
-        public void Sum_ListNumbersWithFloatNumbers_Should_Returned_Two()
-        {
-            //Arrange
-            double result = 0;
-            double expected = 2;
-            double[] listNumbers = { 0.5, 0.5, 1 };
-            Calculator calculatorAppService = new Calculator();
-            //Action
-            result = calculatorAppService.Sum(listNumbers);
-            //Assert
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
         public void Multiply_ListNumbers_Should_Returned_Six()
         {
             //Arrange
@@ -61,6 +49,34 @@ namespace DefaultTestUnit.Test.Unit.Domain
             result = calculatorAppService.Multiply(listNumbers);
             //Assert
             Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Sum_ListNumbersWithFloatNumbers_Should_Returned_Two_Moq()
+        {
+            //Arrange
+            double[] listNumbers = { 0.5, 0.5, 1 };
+            ICalculator calculator = new Calculator();
+            var calculatorAppService = new Mock<ICalculator>();
+            calculatorAppService.Setup(x => x.Sum(listNumbers)).Returns(2);
+            //Action
+            var expected = calculatorAppService.Object.Sum(listNumbers);
+            var actual = calculator.Sum(listNumbers);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Sum_ListNumbersWithFloatNumbers_Should_Returned_Two()
+        {
+            //Arrange
+            double[] listNumbers = { 0.5, 0.5, 1 };
+            var expected = 2;
+            ICalculator calculator = new Calculator();
+            //Action
+            var actual = calculator.Sum(listNumbers);
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
