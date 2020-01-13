@@ -28,14 +28,14 @@ namespace DefaultTestUnit.Application.AppServices
             return db.Set<T>().Find(key);
         }
 
-        public IQueryable<T> Get(Func<T, bool> predicate)
+        public IList<T> Get(Func<T, bool> predicate)
         {
-            return GetAll().Where(predicate).AsQueryable();
+            return GetAll().Where(predicate).ToList();
         }
 
-        public IQueryable<T> GetAll()
+        public IList<T> GetAll()
         {
-            return db.Set<T>();
+            return db.Set<T>().ToList();
         }
 
         public void Remove(Func<T, bool> predicate)

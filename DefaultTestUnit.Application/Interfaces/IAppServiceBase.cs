@@ -9,9 +9,9 @@ namespace DefaultTestUnit.Application.Interfaces
     public interface IAppServiceBase<T> where T : class
     {
         void Add(T entity);
-        IQueryable<T> Get(Func<T, bool> predicate);
+        IList<T> Get(Func<T, bool> predicate);
         T FindByKeys(params object[] key);
-        IQueryable<T> GetAll();
+        IList<T> GetAll();
         void Remove(Func<T, bool> predicate);
         void Update(T entity);
 
