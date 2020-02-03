@@ -1,15 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DefaultTestUnit.Application.AppServices;
 using DefaultTestUnit.Application.Interfaces.AppServices;
 using DefaultTestUnit.Domain.Entities;
 using System.Linq;
 using System.Collections.Generic;
 using Moq;
+using Xunit;
 
-namespace DefaultTestUnit.Test.Units.Application.AppServices.Financial
+namespace DefaultTestUnit.Test.UnitsXunit.Application.AppServices.Financial
 {
-    [TestClass]
     public class InvoiceAppServiceTesting
     {
         private IInvoiceAppService _invoiceAppService;
@@ -19,13 +18,7 @@ namespace DefaultTestUnit.Test.Units.Application.AppServices.Financial
             _invoiceAppService = new InvoiceAppService();
         }
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            _invoiceAppService = new InvoiceAppService();
-        }
-
-        [TestMethod]
+        [Fact]
         public void GetInvoice_ShouldBe_Returned_Invoice()
         {
             //Arrange
@@ -42,7 +35,7 @@ namespace DefaultTestUnit.Test.Units.Application.AppServices.Financial
             var expected = mock.Object.FindByKeys(1);
             var actual = _invoiceAppService.FindByKeys(1);
             //Assert
-            Assert.AreEqual(expected.Id, actual.Id);
+            Assert.Equal(expected.Id, actual.Id);
         }
     }
 }

@@ -1,57 +1,56 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DefaultTestUnit.Domain.Helpers;
 using DefaultTestUnit.Domain.Interfaces;
 using Moq;
+using Xunit;
 
-namespace DefaultTestUnit.Test.Unit.Domain
+namespace DefaultTestUnit.Test.UnitXunit.Domain
 {
-    [TestClass]
     public class CalculatorUnitTesting
     {
-        [TestMethod]
-        public void Sum_ListNumbers_Void_Should_Returned_Zero()
+        [Theory]
+        [InlineData(new double[] {})]
+        public void Sum_ListNumbers_Void_Should_Returned_Zero(double[] listNumbers)
         {
             //Arrange
             double result = 0;
             double expected = 0;
-            double[] listNumbers = { };
             Calculator calculatorAppService = new Calculator();
             //Action
             result = calculatorAppService.Sum(listNumbers);
             //Assert
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestMethod]
-        public void Sum_ListNumbers_Should_Returned_Five()
+        [Theory]
+        [InlineData(new double[] { 1, 2, 2 })]
+        public void Sum_ListNumbers_Should_Returned_Five(double[] listNumbers)
         {
             //Arrange
             double result = 0;
             double expected = 5;
-            double[] listNumbers = { 1, 2, 2 };
             Calculator calculatorAppService = new Calculator();
             //Action
             result = calculatorAppService.Sum(listNumbers);
             //Assert
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestMethod]
-        public void Multiply_ListNumbers_Should_Returned_Six()
+        [Theory]
+        [InlineData(new double[] { 0.2, 3 })]
+        public void Multiply_ListNumbers_Should_Returned_Six(double[] listNumbers)
         {
             //Arrange
             double result = 0;
             double expected = 0.60000000000000009;
-            double[] listNumbers = { 0.2, 3 };
             Calculator calculatorAppService = new Calculator();
             //Action
             result = calculatorAppService.Multiply(listNumbers);
             //Assert
-            Assert.AreEqual(expected, result);
+            Assert.Equal(expected, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Sum_ListNumbersWithFloatNumbers_Should_Returned_Two_Moq()
         {
             //Arrange
@@ -63,20 +62,7 @@ namespace DefaultTestUnit.Test.Unit.Domain
             var expected = calculatorAppService.Object.Sum(listNumbers);
             var actual = calculator.Sum(listNumbers);
             //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Sum_ListNumbersWithFloatNumbers_Should_Returned_Two()
-        {
-            //Arrange
-            double[] listNumbers = { 0.5, 0.5, 1 };
-            var expected = 2;
-            ICalculator calculator = new Calculator();
-            //Action
-            var actual = calculator.Sum(listNumbers);
-            //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }
