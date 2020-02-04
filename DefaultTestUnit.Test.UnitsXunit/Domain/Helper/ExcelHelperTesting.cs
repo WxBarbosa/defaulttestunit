@@ -17,6 +17,10 @@ namespace DefaultTestUnit.Test.UnitsXunit.Domain.Helper
             ExcelHelper excelHelper = new ExcelHelper();
             excelHelper.AddWorksheet("Planilha1");
             excelHelper.ReadWorksheet("Planilha1");
+            excelHelper.BuildHeader(1, 1, "ITEM");
+            excelHelper.BuildHeader(1, 2, "DESCRIÇÃO");
+            excelHelper.AddRow(1, 2, "DESCRIÇÃO");
+            excelHelper.SaveChanges();
             Assert.True(true);
         }
         /*using(MemoryStream memStream = new MemoryStream()) {

@@ -7,6 +7,7 @@ using System.IO;
 using OfficeOpenXml.Style;
 using OfficeOpenXml;
 using System.Drawing;
+using System.Reflection;
 
 namespace DefaultTestUnit.Domain.Helpers
 {
@@ -53,10 +54,10 @@ namespace DefaultTestUnit.Domain.Helpers
 
         private void SetProperties(string author,string title, string subject)
         {
-            this.package.Workbook.Properties.Author = author;
-            this.package.Workbook.Properties.Title = title;
-            this.package.Workbook.Properties.Subject = subject;
-            this.package.Workbook.Properties.Created = DateTime.Now;
+            this.workbook.Properties.Author = author;
+            this.workbook.Properties.Title = title;
+            this.workbook.Properties.Subject = subject;
+            this.workbook.Properties.Created = DateTime.Now;
         }
         
         #region Styles Cells
@@ -67,7 +68,9 @@ namespace DefaultTestUnit.Domain.Helpers
 
         private void DrawnBackgroundColor(ExcelRange cell, Color color)
         {
-            cell.Style.Fill.BackgroundColor.SetColor(color) ;
+            cell.Style.Fill.PatternType = ExcelFillStyle.Gray125;
+            cell.Style.Fill.PatternColor.SetColor(color);
+            cell.Style.Fill.BackgroundColor.SetColor(color);
         }
 
         private void ApplyAlignmentHorizontal(ExcelRange cell, ExcelHorizontalAlignment alignment)
@@ -103,6 +106,19 @@ namespace DefaultTestUnit.Domain.Helpers
         {
             this.worksheet.Cells[row, column].Value = content;
             this.ApplyAlignmentHorizontal(this.worksheet.Cells[row, column], ExcelHorizontalAlignment.Center);
+        }
+
+        public void SaveChanges()
+        {
+            byte[] packageToByte = this.package.GetAsByteArray();
+            string filePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath);//Path.Combine(@"~\Files\ExcelDemo.xlsx");
+
+            //write the file to the disk
+            File.WriteAllBytes(filePath, packageToByte);
+
+            //Instead of converting to bytes, you could also use FileInfo
+            FileInfo fileInfo = new FileInfo(filePath);
+            this.package.SaveAs(fileInfo);
         }
         #endregion
 
